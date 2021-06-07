@@ -364,7 +364,7 @@ FORCEARG_yes=-f
 	touch $@
 
 # build a proto.strap cache tarball
-$(STRAP_CACHE_TARBALL):
+$(STRAP_CACHE_TARBALL): 0-strap-stamp
 	$(ROOT)/tools/build_strap make \
 	    -a $(ADJUNCT_TARBALL) -d $(STRAP_PROTO) -j $(MAX_JOBS) \
             -o $(STRAP_CACHE_TARBALL) $(FORCEARG_$(FORCE_STRAP_REBUILD))
