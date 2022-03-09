@@ -68,7 +68,8 @@ var COMMANDS = [
     'send',
     'sysrq',
     'update',
-    'validate'
+    'validate',
+    'sync-checkpoints'
 ];
 
 /*
@@ -171,6 +172,7 @@ function usage(message, code)
     out(' -or- update <uuid> property=value [property=value ...]');
     out('validate create [-f <filename>]');
     out('validate update <brand> [-f <filename>]');
+    out('sync-checkpoints <uuid>');
     out('');
     out('For more detailed information on the use of this command,'
         + 'type \'man vmadm\'.');
@@ -395,6 +397,7 @@ function addCommandOptions(command, opts, shorts)
     case 'send':
     case 'start':
     case 'sysrq':
+    case 'sync-checkpoints':
         // these only take uuid or 'special' args like start order=cd
         break;
     case 'events':
@@ -875,6 +878,12 @@ function main(callback)
     case 'console':
         uuid = getUUID(command, parsed);
         VM.console(uuid, function (err) {
+            callback(err);
+        });
+        break;
+    case 'sync-checkpoints':
+        uuid = getUUID(command, parsed);
+        VM.sync_checkpoints(uuid, {}, function (err) {
             callback(err);
         });
         break;
