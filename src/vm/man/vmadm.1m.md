@@ -525,6 +525,15 @@ tab-complete UUIDs rather than having to type them out for every command.
        consult the PROPERTIES section below for help correcting errors in your
        payload.
 
+    sync-checkpoints <uuid>
+
+      This command ensures that the /checkpoints directory inside an OS or LX
+      branded zone is in sync with the set of ZFS snapshots on the zone root.
+
+      If you manipulate ZFS snapshots of zones by hand (not through vmadm) then
+      you can use this command after making changes to make sure the checkpoints
+      directory stays in sync.
+
 
 ## SNAPSHOTS
 
